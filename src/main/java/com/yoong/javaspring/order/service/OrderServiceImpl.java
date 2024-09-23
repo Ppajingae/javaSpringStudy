@@ -1,17 +1,19 @@
 package com.yoong.javaspring.order.service;
 
 import com.yoong.javaspring.discount.DiscountPolicy;
-import com.yoong.javaspring.discount.FixDiscountPolicy;
 import com.yoong.javaspring.member.entity.Member;
-import com.yoong.javaspring.member.enumClass.Grade;
 import com.yoong.javaspring.member.repository.MemberRepository;
-import com.yoong.javaspring.member.repository.MemoryMemberRepository;
 import com.yoong.javaspring.order.entity.Order;
 
 public class OrderServiceImpl implements OrderService{
 
-    private MemberRepository memberRepository = new MemoryMemberRepository();
-    private DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy){
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long id, String itemName, int itemPrice) {

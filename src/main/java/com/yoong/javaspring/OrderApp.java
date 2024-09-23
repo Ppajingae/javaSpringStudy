@@ -3,17 +3,17 @@ package com.yoong.javaspring;
 import com.yoong.javaspring.member.entity.Member;
 import com.yoong.javaspring.member.enumClass.Grade;
 import com.yoong.javaspring.member.service.MemberService;
-import com.yoong.javaspring.member.service.MemberServiceImpl;
 import com.yoong.javaspring.order.entity.Order;
 import com.yoong.javaspring.order.service.OrderService;
-import com.yoong.javaspring.order.service.OrderServiceImpl;
 
 public class OrderApp {
 
     public static void main(String[] args) {
 
-        MemberService memberService = new MemberServiceImpl();
-        OrderService orderService = new OrderServiceImpl();
+        AppConfig appConfig = new AppConfig();
+
+        MemberService memberService = appConfig.memberService();
+        OrderService orderService = appConfig.orderService();
 
         Long member1Id = 1L;
         Long member2Id = 2L;

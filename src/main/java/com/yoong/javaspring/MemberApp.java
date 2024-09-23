@@ -3,13 +3,14 @@ package com.yoong.javaspring;
 import com.yoong.javaspring.member.entity.Member;
 import com.yoong.javaspring.member.enumClass.Grade;
 import com.yoong.javaspring.member.service.MemberService;
-import com.yoong.javaspring.member.service.MemberServiceImpl;
 
 public class MemberApp {
 
     public static void main(String[] args) {
 
-        MemberService memberService = new MemberServiceImpl();
+        AppConfig appConfig = new AppConfig();
+
+        MemberService memberService = appConfig.memberService();
 
         Member kim = new Member(1L, "Kim", Grade.BASIC);
 
