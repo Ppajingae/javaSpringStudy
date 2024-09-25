@@ -3,25 +3,24 @@ package com.yoong.javaspring;
 import com.yoong.javaspring.member.entity.Member;
 import com.yoong.javaspring.member.enumClass.Grade;
 import com.yoong.javaspring.member.service.MemberService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MemberApp {
 
     public static void main(String[] args) {
 
-        AppConfig appConfig = new AppConfig();
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 
-        MemberService memberService = appConfig.memberService();
+        MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
 
-        Member kim = new Member(1L, "Kim", Grade.BASIC);
+        Member kim = new Member(1L, "kim", Grade.VIP);
 
         memberService.join(kim);
 
         Member getMember = memberService.findByMember(1L);
 
-        System.out.println("kim : " + kim.getName());
-        System.out.println("id : " + getMember.getId());
-        System.out.println("name : " + getMember.getName());
-        System.out.println("grade : " + getMember.getGrade());
+        System.out.println(getMember.toString());
 
     }
 }
